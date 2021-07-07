@@ -8,6 +8,7 @@ def read_file():
             for row in csv_reader:
                 print(row)
                 print(row[1])
+                print(row[2])
     except Exception as e:
         print(e)
 
