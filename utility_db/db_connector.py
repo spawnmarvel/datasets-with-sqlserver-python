@@ -12,7 +12,7 @@ logger = Logger().get()
 server = r"localhost\sqlexpress"
 database = "DataSetsDb" 
 username = "misp" 
-password = "astring6r473"
+password = "astring6r473" # this will never be done in production.....
 cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER="+server+";DATABASE="+database+";UID="+username+";PWD="+ password)
 cursor = cnxn.cursor()
 
