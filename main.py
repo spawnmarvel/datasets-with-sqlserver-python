@@ -1,6 +1,6 @@
 
 from utility_db.db_connector import DbConnector
-import utility_reader.read_datasets as read_data
+from utility_reader.read_datasets import ReadDataSet
 from utility_logs.app_logger import Logger
 import json
 
@@ -24,9 +24,10 @@ def main():
     db = "DataSetsDb" 
     user = "misp"
     p = read_keyvault()
-    db_con = DbConnector(database=db, db_username=user, db_password=p)
-    db_con.get_all_bestsellers()
-    # read_data.read_file()
+    db_con_worker = DbConnector(database=db, db_username=user, db_password=p)
+    read_data_worker = ReadDataSet()
+    db_con_worker.get_all_bestsellers()
+    read_data_worker.read_file()
 
 if __name__ == "__main__":
     main()

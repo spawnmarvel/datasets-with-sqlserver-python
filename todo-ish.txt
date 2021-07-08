@@ -4,10 +4,10 @@ python docs
 pyodbc docs
 https://www.kaggle.com/sootersaalu/amazon-top-50-bestselling-books-2009-2019?select=bestsellers+with+categories.csv
 
-1 db con
-2 logger
-3 read file
-4 simulate keyvault
+1 db con = ok
+2 logger = ok
+3 read file = ok
+4 simulate keyvault = ok
 5 insert bestsellers data
 6 CRUD bestsellers data
 7 prepared statment for data
