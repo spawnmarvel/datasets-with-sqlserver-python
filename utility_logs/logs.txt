@@ -1,5 +1,0 @@
-2021-07-08 18:02:34,208 - 17360 - 16112 - main.py - 8 -                 main() root - INFO - Main
-2021-07-08 18:04:24,453 - 14720 - 15852 - main.py - 8 -                 main() root - INFO - Main
-2021-07-08 18:04:37,162 - 9840 - 16224 - main.py - 8 -                 main() root - INFO - Main
-2021-07-08 18:04:37,162 - 9840 - 16224 - db_connector.py - 30 -  get_all_bestsellers() root - INFO - SELECT * FROM test.BestSellers;
-2021-07-08 18:04:37,170 - 9840 - 16224 - read_datasets.py - 8 -            read_file() root - INFO - Read file
