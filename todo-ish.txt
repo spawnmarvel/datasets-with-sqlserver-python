@@ -1,0 +1,14 @@
+sql server docs
+https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+python docs
+pyodbc docs
+https://www.kaggle.com/sootersaalu/amazon-top-50-bestselling-books-2009-2019?select=bestsellers+with+categories.csv
+
+1 db con
+2 logger
+3 read file
+4 simulate keyvault
+5 insert bestsellers data
+6 CRUD bestsellers data
+7 prepared statment for data
+8 tbd
