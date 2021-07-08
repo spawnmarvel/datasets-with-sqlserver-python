@@ -1,6 +1,5 @@
--- Creates the login AbolrousHazem with password '340$Uuxwp7Mcxo7Khy'.  
-CREATE LOGIN misp   
-    WITH PASSWORD = 'astring6r473';  
+-- Creates the login misp with password provided in ''
+-- CREATE LOGIN misp WITH PASSWORD = '';  
 GO
 
 -- Creates a database user for the login created above.  
