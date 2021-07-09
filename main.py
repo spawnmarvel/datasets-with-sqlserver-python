@@ -18,6 +18,7 @@ def read_keyvault():
         logger.error(e)
         logger.error("Failed to retrieved password")
 
+
 def main():
     logger.info("* Main, logs: utility_logs/logs.log")
     logger.info("** When done, set [handler_consoleHandler], level=ERROR, it is now level=INFO. So all that goes to file does also go to std out ")
@@ -26,8 +27,20 @@ def main():
     p = read_keyvault()
     db_con_worker = DbConnector(database=db, db_username=user, db_password=p)
     read_data_worker = ReadDataSet()
-    db_con_worker.get_all_bestsellers()
-    read_data_worker.read_file()
+    li = read_data_worker.read_file()
+    for l in li:
+        tmp_name = l[0]
+        tmp_author = l[1]
+        tmp_rating = l[2]
+        tmp_reviews = l[3]
+        tmp_price = l[4]
+        tmp_year = l[5]
+        tmp_genre = l[6]
+        # db_con_worker.insert_bestsellers(b_name=tmp_name, b_author=tmp_author, b_rating=tmp_rating,b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
+
+    select_rv = db_con_worker.get_all_bestsellers()
+    for s in select_rv:
+        logger.info(s)                        
 
 if __name__ == "__main__":
     main()

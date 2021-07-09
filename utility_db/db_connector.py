@@ -18,20 +18,33 @@ class DbConnector:
         self.cursor = self.cnxn.cursor()
 
     def get_version(self):
-        self.cursor.execute("SELECT @@version;") 
-        row = self.cursor.fetchone() 
-        while row: 
-            print(row[0])
-            row = self.cursor.fetchone()
+        try:
+            self.cursor.execute("SELECT @@version;") 
+            row = self.cursor.fetchone() 
+            while row: 
+                print(row[0])
+                row = self.cursor.fetchone()
+        except Exception as e:
+            logger.error(e)
 
 
     def get_all_bestsellers(self):
-        sql = "SELECT * FROM test.BestSellers;"
-        logger.info(sql)
-        self.cursor.execute(sql) 
-        row = self.cursor.fetchall() 
+        try:
+            sql = "SELECT * FROM test.BestSellers;"
+            logger.info(sql)
+            self.cursor.execute(sql) 
+            row = self.cursor.fetchall()
+            return row
+        except Exception as e:
+            logger.error(e) 
 
-    def insert_bestsellers(b_name, b_author, b_rating, b_price, b_year, b_genre):
-        print(b_name)
-    # cursor.execute("""INSERT INTO test.BestSellers (b_name, b_author, b_rating, b_price, b_year, b_genre) VALUES (?,?,?,?,?,?)""", "P3","EAR") 
-    # cnxn.commit()
+    def insert_bestsellers(self,b_name, b_author, b_rating,b_reviews, b_price, b_year, b_genre):
+        sql = """INSERT INTO test.BestSellers (b_name, b_author, b_rating, b_reviews, b_price, b_year, b_genre) VALUES (?,?,?,?,?,?, ?)"""
+        rv = str(b_name) + "," + str(b_author) + "," + str(b_rating) + "," +str(b_reviews) + "," +str(b_price) + "," +str(b_year) + "," +str(b_genre)
+        try:
+            self.cursor.execute(sql, b_name, b_author, b_rating,b_reviews, b_price, b_year, b_genre) 
+            self.cnxn.commit()
+            logger.debug(sql)
+        except Exception as e:
+            logger.error(rv)
+            logger.error(e)
