@@ -28,19 +28,25 @@ def main():
     db_con_worker = DbConnector(database=db, db_username=user, db_password=p)
     read_data_worker = ReadDataSet()
     li = read_data_worker.read_file()
+    distinct_authors = set()
     for l in li:
         tmp_name = l[0]
         tmp_author = l[1]
+        distinct_authors.add(tmp_author)
         tmp_rating = l[2]
         tmp_reviews = l[3]
         tmp_price = l[4]
         tmp_year = l[5]
         tmp_genre = l[6]
-        # db_con_worker.insert_bestsellers(b_name=tmp_name, b_author=tmp_author, b_rating=tmp_rating,b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
+        # db_con_worker.insert_bestsellers(b_name=tmp_name, b_rating=tmp_rating,b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
 
     select_rv = db_con_worker.select_all_bestsellers()
     for s in select_rv:
-        logger.info(s)                        
+        logger.info(s)
+
+    for s in distinct_authors:
+        logger.info(s)
+        logger.info(str(len(distinct_authors)))                 
 
 if __name__ == "__main__":
     main()

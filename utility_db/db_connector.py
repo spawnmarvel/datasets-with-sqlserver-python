@@ -37,19 +37,23 @@ class DbConnector:
         except Exception as e:
             logger.error(e) 
 
-    def insert_bestsellers(self,b_name, b_author, b_rating,b_reviews, b_price, b_year, b_genre):
-        sql = """INSERT INTO test.BestSellers (b_name, b_author, b_rating, b_reviews, b_price, b_year, b_genre) VALUES (?,?,?,?,?,?, ?)"""
-        rv = str(b_name) + "," + str(b_author) + "," + str(b_rating) + "," +str(b_reviews) + "," +str(b_price) + "," +str(b_year) + "," +str(b_genre)
+    def insert_bestsellers(self,b_name, b_rating,b_reviews, b_price, b_year, b_genre):
+        sql = """INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre) VALUES (?,?,?,?,?, ?)"""
+        rv = str(b_name) + "," + str(b_rating) + "," +str(b_reviews) + "," +str(b_price) + "," +str(b_year) + "," +str(b_genre)
         try:
-            self.cursor.execute(sql, b_name, b_author, b_rating,b_reviews, b_price, b_year, b_genre) 
+            self.cursor.execute(sql, b_name, b_rating,b_reviews, b_price, b_year, b_genre) 
             self.cnxn.commit()
             logger.debug(sql)
         except Exception as e:
             logger.error(rv)
             logger.error(e)
     
+    def insert_author():
+        pass
+
     def update_bestsellers(self):
         pass
+    
     def delete_bestsellers(self):
         pass
 
