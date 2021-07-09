@@ -12,15 +12,15 @@ def read_keyvault():
         with open("keyvault.json") as fi:
             data = json.load(fi)
             p = data["password"]
-            print(p)
-            logger.info("Succsess retrieved password")
+            logger.info("Succsess, retrieved password")
             return p
     except Exception as e:
         logger.error(e)
         logger.error("Failed to retrieved password")
 
 def main():
-    logger.info("Main")
+    logger.info("* Main, logs: utility_logs/logs.log")
+    logger.info("** When done, set [handler_consoleHandler], level=ERROR, it is now level=INFO. So all that goes to file does also go to std out ")
     db = "DataSetsDb" 
     user = "misp"
     p = read_keyvault()

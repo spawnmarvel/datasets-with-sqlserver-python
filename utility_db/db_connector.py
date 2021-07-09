@@ -30,7 +30,6 @@ class DbConnector:
         logger.info(sql)
         self.cursor.execute(sql) 
         row = self.cursor.fetchall() 
-        print(row)
 
     def insert_bestsellers(b_name, b_author, b_rating, b_price, b_year, b_genre):
         print(b_name)

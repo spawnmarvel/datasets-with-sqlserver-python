@@ -10,13 +10,15 @@ class ReadDataSet:
         pass
     
     def read_file(self):
+        li = []
+        c = 0
         logger.info("Read file")
         try:
             with open("./kaggle-datasets/bestsellers with categories.csv", "r", encoding="utf-8") as fi:
                 csv_reader = reader(fi)
                 for row in csv_reader:
-                    print(row)
-                    print(row[1])
-                    print(row[2])
+                    li.append(row)
+                    c = c +1
+            logger.info("Appended " + str(c) + " rows")
         except Exception as e:
             print(e)
