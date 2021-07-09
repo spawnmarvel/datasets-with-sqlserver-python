@@ -17,10 +17,7 @@ protecting against SQL injection attacks. It is also be more efficient if you ex
 The SQL will be "prepared" only once. (pyodbc keeps only the last prepared statement, so if you switch between statements, each will be prepared multiple times.)
 
 
-TODO:
-* run_server.py
-* run_http.py
-
+TODO or Done's:
 * DDL, bestsellers, author, f key on id
 * Db con 
 * Logger 
