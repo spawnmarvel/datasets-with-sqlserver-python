@@ -8,7 +8,7 @@ Having fun with Kaggle data, SQL Server and Python (pyodbc).
 
 [PyODBC] https://pypi.org/project/pyodbc/
 
-[PyODBC paramters] https://github.com/mkleehammer/pyodbc/wiki/Getting-started#parameters
+[PyODBC parameters] https://github.com/mkleehammer/pyodbc/wiki/Getting-started#parameters
 
 ODBC supports parameters using a question mark as a place holder in the SQL. 
 You provide the values for the question marks by passing them after the SQL.
