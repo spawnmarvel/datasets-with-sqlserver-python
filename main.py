@@ -38,7 +38,7 @@ def main():
         tmp_genre = l[6]
         # db_con_worker.insert_bestsellers(b_name=tmp_name, b_author=tmp_author, b_rating=tmp_rating,b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
 
-    select_rv = db_con_worker.get_all_bestsellers()
+    select_rv = db_con_worker.select_all_bestsellers()
     for s in select_rv:
         logger.info(s)                        
 

@@ -27,8 +27,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-
-    def get_all_bestsellers(self):
+    def select_all_bestsellers(self):
         try:
             sql = "SELECT * FROM test.BestSellers;"
             logger.info(sql)
@@ -48,3 +47,12 @@ class DbConnector:
         except Exception as e:
             logger.error(rv)
             logger.error(e)
+    
+    def update_bestsellers(self):
+        pass
+    def delete_bestsellers(self):
+        pass
+
+    # advanced TSQL
+    # create view if not exists
+    # create procedure if not exists
