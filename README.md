@@ -8,6 +8,14 @@ Having fun with Kaggle data, SQL Server and Python (pyodbc).
 
 [PyODBC] https://pypi.org/project/pyodbc/
 
+[PyODBC paramters] https://github.com/mkleehammer/pyodbc/wiki/Getting-started#parameters
+
+ODBC supports parameters using a question mark as a place holder in the SQL. 
+You provide the values for the question marks by passing them after the SQL.
+This is safer than putting the values into the string because the parameters are passed to the database separately, 
+protecting against SQL injection attacks. It is also be more efficient if you execute the same SQL repeatedly with different parameters. 
+The SQL will be "prepared" only once. (pyodbc keeps only the last prepared statement, so if you switch between statements, each will be prepared multiple times.)
+
 
 TODO:
 * run_server.py
