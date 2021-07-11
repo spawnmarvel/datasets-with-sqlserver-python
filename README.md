@@ -31,4 +31,4 @@ TODO or Done's:
 * TBD
 
 Example of output in logs:
-[![Screenshot](x_logs_and_join.jpg)
+[![Screenshot](x_logs_and_join_bestsellers.jpg)
