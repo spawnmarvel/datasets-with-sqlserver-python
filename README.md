@@ -30,5 +30,5 @@ TODO or Done's:
 * T-SQL Advanced
 * TBD
 
-
+Example of output in logs:
 [![Screenshot](x_logs_and_join.jpg)
