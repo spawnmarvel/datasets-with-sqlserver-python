@@ -29,3 +29,6 @@ TODO or Done's:
 * Prepared statment for data
 * T-SQL Advanced
 * TBD
+
+
+[![Screenshot](x_logs_and_join.jpg)

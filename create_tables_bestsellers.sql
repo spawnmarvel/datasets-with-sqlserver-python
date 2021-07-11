@@ -1,6 +1,7 @@
 use DataSetsDb;
 go
-CREATE SCHEMA test;
+IF NOT EXISTS(SELECT * FROM sys.schemas WHERE NAME = "test" ) EXEC('CREATE SCHEMA [test]');
+-- or CREATE SCHEMA test;
 go
 
 -- create tables
