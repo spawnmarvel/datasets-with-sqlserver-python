@@ -24,7 +24,7 @@ class AppController:
                 connection_info["password"] = data["password"]
                 connection_info["database"] = data["database"]
               
-                logger.info("Succsess, retrieved password")
+                logger.info("Success, retrieved password")
                 return connection_info
         except Exception as e:
             logger.error(e)
