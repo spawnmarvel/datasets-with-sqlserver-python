@@ -18,15 +18,15 @@ The SQL will be "prepared" only once. (pyodbc keeps only the last prepared state
 
 
 TODO or Done's:
-* DDL, bestsellers, author, f key on id
-* Db con 
-* Logger 
-* Datasets
-* Read file
-* simulate keyvault
-* Insert bestsellers data
-* T-SQL CRUD bestsellers data
-* Prepared statment for data
+* DDL, bestsellers, author, f key on id 100%
+* Db con 100%
+* Logger 100%
+* Datasets 100%
+* Read file 100%
+* Simulate keyvault 100%
+* Insert bestsellers data 100%
+* Prepared statment for data 80%
+* T-SQL CRUD bestsellers data 50%
 * T-SQL Advanced
 * TBD
 
