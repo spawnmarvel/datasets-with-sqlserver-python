@@ -30,7 +30,7 @@ class AppController:
             logger.error(e)
             logger.error("Failed to retrieved password")
 
-    def insert_to_bestsellers(self):
+    def ctrl_insert_to_bestsellers(self):
         logger.info("Try insert bestsellers")
         # read the data csv file
         bestsellers_data = self.read_dataset_worker.read_file("./kaggle-datasets/bestsellers with categories.csv")
@@ -48,12 +48,12 @@ class AppController:
             self.db_con_worker.insert_bestsellers(b_name=tmp_name, b_rating=tmp_rating,b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
 
 
-    def select_from_bestsellers(self):
+    def ctrl_select_all_bestsellers(self):
         select_rv = self.db_con_worker.select_all_bestsellers()
         for s in select_rv:
             logger.info(s)
 
-    def insert_to_authors(self):
+    def ctrl_insert_authors(self):
         logger.info("Try insert authors")
         authors_bestsellers_data = self.read_dataset_worker.read_file("./kaggle-datasets/bestsellers with categories authors.csv")
         for a in authors_bestsellers_data:
@@ -61,7 +61,15 @@ class AppController:
             tmp_a_book_id = a[1]
             self.db_con_worker.insert_author(a_name=tmp_name, a_book_id=tmp_a_book_id)
 
-    def select_from_inner_join_bestsellers_authors(self):
+    def ctrl_select_inner_join_bestsellers_authors(self):
         select_rv = self.db_con_worker.select_inner_join_bestsellers_authors()
+        for s in select_rv:
+            logger.info(s)
+    
+    def ctrl_create_or_check_view_bestsellers_authors(self):
+        select_rv = self.db_con_worker.create_or_check_view_bestsellers_authors()
+
+    def ctrl_select_view_BestsellersAndAuthors(self):
+        select_rv = self.db_con_worker.select_view_BestsellersAndAuthors()
         for s in select_rv:
             logger.info(s)

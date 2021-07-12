@@ -95,4 +95,48 @@ class DbConnector:
             logger.error(e) 
 
     # create view if not exists
+    def create_or_check_view_bestsellers_authors(self):
+        logger.info("Try CREATE VIEW test.BestsellersAndAuthors")
+        row = ""
+        try:
+            sql_check = "SELECT * FROM sys.views WHERE OBJECT_ID=OBJECT_ID('test.BestsellersAndAuthors');"
+            logger.info(sql_check)
+            self.cursor.execute(sql_check) 
+            row = self.cursor.fetchall()
+            # it returns an empty list of not yet created
+            if not row:
+                sql_create = """ CREATE VIEW test.BestsellersAndAuthors as
+                    SELECT b.b_id
+                    ,b.b_name
+                    ,b.b_rating
+                    ,b.b_reviews
+                    ,b.b_price
+                    ,b.b_year
+                    ,b.b_genre
+	                ,a.a_id
+	                ,a.a_name
+	                ,a.author_book_id
+                    FROM DataSetsDb.test.BestSellers as b
+                    INNER JOIN DataSetsDb.test.Authors as a
+                    ON b.b_id = a.author_book_id;"""
+                logger.info(sql_create)
+                self.cursor.execute(sql_create) 
+                self.cnxn.commit()
+            else:
+                # logg the data atr about the view
+                logger.info(row)
+                return row
+        except Exception as e:
+            logger.error(e) 
+
+    def select_view_BestsellersAndAuthors(self):
+        try:
+            sql = "SELECT * FROM test.BestsellersAndAuthors;"
+            logger.info(sql)
+            self.cursor.execute(sql) 
+            row = self.cursor.fetchall()
+            return row
+        except Exception as e:
+            logger.error(e) 
+
     # create procedure if not exists

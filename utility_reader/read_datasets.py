@@ -8,7 +8,7 @@ class ReadDataSet:
 
     def __init__(self):
         pass
-    
+
     def read_file(self, file_with_data):
         li = []
         c = 0
@@ -22,7 +22,7 @@ class ReadDataSet:
                         pass
                     else:
                         li.append(row)
-                    c = c +1
+                    c = c + 1
             logger.info("Appended " + str(c) + " rows")
             return li
         except Exception as e:
