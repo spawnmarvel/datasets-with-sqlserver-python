@@ -28,6 +28,12 @@ TODO or Done's:
 * Prepared statment for data 80%
 * T-SQL CRUD bestsellers data 50%
 * T-SQL Advanced
+* Views
+* https://docs.microsoft.com/en-us/sql/relational-databases/views/views?view=sql-server-ver15
+* Joins
+* https://docs.microsoft.com/en-us/sql/relational-databases/performance/joins?view=sql-server-ver15
+* Procedure
+* https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver15
 * TBD
 
 Example of output in logs:
