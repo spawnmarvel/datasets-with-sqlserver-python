@@ -35,6 +35,7 @@ TODO or Done's:
 * Procedure
 * https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver15
 * TBD
+* Tkinter GUI, MVC
 
 Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)
