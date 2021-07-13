@@ -22,6 +22,8 @@ The SQL will be "prepared" only once. (pyodbc keeps only the last prepared state
 TODO or Done's:
 * DDL, bestsellers, author, f key on id 100%
 * Db con 100%
+* DB close
+* https://stackoverflow.com/questions/3783238/python-database-connection-close
 * Logger 100%
 * Datasets 100%
 * Read file 100%
