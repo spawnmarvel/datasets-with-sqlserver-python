@@ -1,12 +1,13 @@
 
 from logging import log
-import pyodbc 
+import pyodbc
 # https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15
 import random
 import datetime
 from utility_logs.app_logger import Logger
 
 logger = Logger().get()
+
 
 class DbConnector:
 
@@ -15,14 +16,15 @@ class DbConnector:
         self.database = database
         self.username = db_username
         self.password = db_password
-        self.cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER="+self.server+";DATABASE="+self.database+";UID="+self.username+";PWD="+ self.password)
+        self.cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER="+self.server +
+                                   ";DATABASE="+self.database+";UID="+self.username+";PWD=" + self.password)
         self.cursor = self.cnxn.cursor()
 
     def get_version(self):
         try:
-            self.cursor.execute("SELECT @@version;") 
-            row = self.cursor.fetchone() 
-            while row: 
+            self.cursor.execute("SELECT @@version;")
+            row = self.cursor.fetchone()
+            while row:
                 print(row[0])
                 row = self.cursor.fetchone()
         except Exception as e:
@@ -32,28 +34,30 @@ class DbConnector:
         try:
             sql = "SELECT * FROM test.BestSellers;"
             logger.info(sql)
-            self.cursor.execute(sql) 
+            self.cursor.execute(sql)
             row = self.cursor.fetchall()
             return row
         except Exception as e:
-            logger.error(e) 
+            logger.error(e)
 
-    def insert_bestsellers(self,b_name, b_rating,b_reviews, b_price, b_year, b_genre):
+    def insert_bestsellers(self, b_name, b_rating, b_reviews, b_price, b_year, b_genre):
         sql = """INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre) VALUES (?,?,?,?,?, ?)"""
-        rv = str(b_name) + "," + str(b_rating) + "," +str(b_reviews) + "," +str(b_price) + "," +str(b_year) + "," +str(b_genre)
+        rv = str(b_name) + "," + str(b_rating) + "," + str(b_reviews) + \
+            "," + str(b_price) + "," + str(b_year) + "," + str(b_genre)
         try:
             # before we insert we can validate all params
-            self.cursor.execute(sql, b_name, b_rating,b_reviews, b_price, b_year, b_genre) 
+            self.cursor.execute(sql, b_name, b_rating,
+                                b_reviews, b_price, b_year, b_genre)
             self.cnxn.commit()
             logger.info(sql)
             logger.info(rv)
         except Exception as e:
             logger.error(rv)
             logger.error(e)
-    
-    def insert_author(self,a_name, a_book_id):
+
+    def insert_author(self, a_name, a_book_id):
         sql = """INSERT INTO test.Authors (a_name, author_book_id) VALUES (?,?)"""
-        rv = str(a_name) + "," +  str(a_book_id)
+        rv = str(a_name) + "," + str(a_book_id)
         try:
             # before we insert we can validate all params
             self.cursor.execute(sql, a_name, a_book_id)
@@ -65,10 +69,9 @@ class DbConnector:
 
     def update_bestsellers(self):
         pass
-    
+
     def delete_bestsellers(self):
         pass
-
 
     # advanced TSQL
 
@@ -88,11 +91,11 @@ class DbConnector:
                 INNER JOIN DataSetsDb.test.Authors as a
                 ON b.b_id = a.author_book_id ORDER BY a.a_name DESC;"""
             logger.info(sql)
-            self.cursor.execute(sql) 
+            self.cursor.execute(sql)
             row = self.cursor.fetchall()
             return row
         except Exception as e:
-            logger.error(e) 
+            logger.error(e)
 
     # create view if not exists
     def create_or_check_view_bestsellers_authors(self):
@@ -101,7 +104,7 @@ class DbConnector:
         try:
             sql_check = "SELECT * FROM sys.views WHERE OBJECT_ID=OBJECT_ID('test.BestsellersAndAuthors');"
             logger.info(sql_check)
-            self.cursor.execute(sql_check) 
+            self.cursor.execute(sql_check)
             row = self.cursor.fetchall()
             # it returns an empty list of not yet created
             if not row:
@@ -113,30 +116,39 @@ class DbConnector:
                     ,b.b_price
                     ,b.b_year
                     ,b.b_genre
-	                ,a.a_id
 	                ,a.a_name
 	                ,a.author_book_id
                     FROM DataSetsDb.test.BestSellers as b
                     INNER JOIN DataSetsDb.test.Authors as a
                     ON b.b_id = a.author_book_id;"""
                 logger.info(sql_create)
-                self.cursor.execute(sql_create) 
+                self.cursor.execute(sql_create)
                 self.cnxn.commit()
             else:
                 # logg the data atr about the view
                 logger.info(row)
                 return row
         except Exception as e:
-            logger.error(e) 
+            logger.error(e)
 
     def select_view_BestsellersAndAuthors(self):
         try:
             sql = "SELECT * FROM test.BestsellersAndAuthors;"
             logger.info(sql)
-            self.cursor.execute(sql) 
+            self.cursor.execute(sql)
             row = self.cursor.fetchall()
             return row
         except Exception as e:
-            logger.error(e) 
+            logger.error(e)
+
+    def select_view_BestsellersAndAuthors_order_by_rating(self):
+        try:
+            sql = "SELECT * FROM test.BestsellersAndAuthors ORDER BY b_rating DESC;"
+            logger.info(sql)
+            self.cursor.execute(sql)
+            row = self.cursor.fetchall()
+            return row
+        except Exception as e:
+            logger.error(e)
 
     # create procedure if not exists

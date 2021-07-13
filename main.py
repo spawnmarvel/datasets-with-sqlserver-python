@@ -14,8 +14,9 @@ def main():
     # app_ctrl.ctrl_select_all_bestsellers()
     # app_ctrl.ctrl_insert_authors()
     # app_ctrl.ctrl_select_inner_join_bestsellers_authors()
-    app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
-    app_ctrl.ctrl_select_view_BestsellersAndAuthors()
+    # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
+    # app_ctrl.ctrl_select_view_BestsellersAndAuthors()
+    app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
 
 
 if __name__ == "__main__":
