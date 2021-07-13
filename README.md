@@ -36,6 +36,7 @@ TODO or Done's:
 * https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver15
 * TBD
 * Tkinter GUI, MVC
+* https://realpython.com/python-gui-tkinter/#adding-a-widget
 
 Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)
