@@ -37,6 +37,7 @@ TODO or Done's:
 * TBD
 * Tkinter GUI, MVC
 * https://realpython.com/python-gui-tkinter/#adding-a-widget
+* https://medium.com/swlh/python-oop-mvc-data-science-tkinter-23c3e8dab70f
 
 Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)

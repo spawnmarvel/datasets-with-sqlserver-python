@@ -4,8 +4,11 @@ import json
 
 logger = Logger().get()
 
-
 def main():
+    # root = tk.Tk()
+    # root.geometry("500x200")
+    # app = Application(master=root)
+    # app.mainloop()
     logger.info("* Main, logs: utility_logs/logs.log")
     logger.info(
         "** When done, set [handler_consoleHandler], level=ERROR, it is now level=INFO. So all that goes to file does also go to std out ")
