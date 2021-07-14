@@ -19,7 +19,8 @@ def main():
     # app_ctrl.ctrl_select_inner_join_bestsellers_authors()
     # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
     # app_ctrl.ctrl_select_view_BestsellersAndAuthors()
-    app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
+    # app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
+    app_ctrl.ctrl_merge_test_to_prod()
 
 
 if __name__ == "__main__":

@@ -1,7 +1,5 @@
 
-from logging import log
 import pyodbc
-# https://docs.microsoft.com/en-us/sql/connect/python/pyodbc/step-3-proof-of-concept-connecting-to-sql-using-pyodbc?view=sql-server-ver15
 import random
 import datetime
 from utility_logs.app_logger import Logger
@@ -155,6 +153,40 @@ class DbConnector:
                 logger.info(sql)
                 self.cursor.execute(sql)
                 row = self.cursor.fetchall()
+                return row
+        except Exception as e:
+            logger.error(e)
+
+    def merge_test_to_prod(self):
+        # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
+        # First we create a mirror of test.table to prod.table
+        # Then we do the merge
+        sql = """INSERT prod.BestSellers
+                (b_name
+                    ,b_rating
+                    ,b_reviews
+                    ,b_price
+                    ,b_year
+                    ,b_genre)
+                    SELECT
+                         b_name
+                        ,b_rating
+                        ,b_reviews
+                        ,b_price
+                        ,b_year
+                        ,b_genre
+                        FROM test.BestSellers
+                        WHERE NOT EXISTS (SELECT b_id FROM prod.BestSellers po WHERE po.b_id = test.BestSellers.b_id);"""
+        sql_verify_merg = "SELECT COUNT(b_id) FROM prod.BestSellers"
+        try:
+            with self.cnxn: #ctxmanger close
+                self.cursor.execute(sql)
+                self.cnxn.commit()
+                logger.info(sql)
+                logger.info(sql_verify_merg)
+                self.cursor.execute(sql_verify_merg)
+                row = self.cursor.fetchall()
+                logger.info(row)
                 return row
         except Exception as e:
             logger.error(e)

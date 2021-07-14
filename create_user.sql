@@ -1,3 +1,6 @@
+
+
+-- ****** TEST
 -- Creates the login misp with password provided in ''
 -- CREATE LOGIN misp WITH PASSWORD = '';  
 -- GO
@@ -26,3 +29,12 @@ GRANT ALTER ON SCHEMA::test TO misp
 USE DataSetsDb
 GO
 GRANT SELECT ON SCHEMA::test TO misp
+
+
+-- ****** PROD
+USE DataSetsDb
+GO
+--CRUD
+
+GRANT SELECT,INSERT, UPDATE, DELETE ON prod.BestSellers TO misp
+GRANT SELECT,INSERT, UPDATE, DELETE ON prod.Authors TO misp

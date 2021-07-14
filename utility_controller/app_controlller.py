@@ -81,3 +81,7 @@ class AppController:
         select_rv = self.db_con_worker.select_view_BestsellersAndAuthors_order_by_rating()
         for s in select_rv:
             logger.info(s)
+
+    def ctrl_merge_test_to_prod(self):
+        select_rv = self.db_con_worker.merge_test_to_prod()
+
