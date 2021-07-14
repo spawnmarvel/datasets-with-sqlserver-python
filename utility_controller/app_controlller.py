@@ -55,6 +55,9 @@ class AppController:
         for s in select_rv:
             logger.info(s)
 
+    def ctrl_delete_bestsellers(self, r_id):
+        select_rv = self.db_con_worker.delete_bestsellers(r_id)
+
     def ctrl_insert_authors(self):
         logger.info("Try insert authors")
         authors_bestsellers_data = self.read_dataset_worker.read_file(
@@ -77,11 +80,15 @@ class AppController:
         select_rv = self.db_con_worker.select_view_BestsellersAndAuthors()
         for s in select_rv:
             logger.info(s)
+
     def ctrl_select_view_BestsellersAndAuthors_order_by_rating(self):
         select_rv = self.db_con_worker.select_view_BestsellersAndAuthors_order_by_rating()
         for s in select_rv:
             logger.info(s)
 
+    def ctrl_insert_select_test_to_prod(self):
+        select_rv = self.db_con_worker.insert_select_test_to_prod
+    
     def ctrl_merge_test_to_prod(self):
         select_rv = self.db_con_worker.merge_test_to_prod()
-
+ 

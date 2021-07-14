@@ -4,6 +4,7 @@ import json
 
 logger = Logger().get()
 
+
 def main():
     # root = tk.Tk()
     # root.geometry("500x200")
@@ -20,6 +21,10 @@ def main():
     # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
     # app_ctrl.ctrl_select_view_BestsellersAndAuthors()
     # app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
+    # app_ctrl.ctrl_insert_select_test_to_prod()
+    # delet id 1
+    # app_ctrl.ctrl_delete_bestsellers(1)
+    # alter prod b_id 1, rating to 100, was 4.7, and add an extra row b_id 551 with dummy data, does merge fix it, update 1 and delete 551?= YES
     app_ctrl.ctrl_merge_test_to_prod()
 
 
