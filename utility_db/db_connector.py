@@ -26,6 +26,10 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
+
+    def create_or_check_procedure_insert_bestsellers():
+        pass
+
     def select_all_bestsellers(self):
         try:
             with self.cnxn:  # ctxmanger close

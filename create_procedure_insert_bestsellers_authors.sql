@@ -1,3 +1,12 @@
+
+-- get author id
+-- if null
+-- then insert author and bestsellers
+-- else
+-- use the id and insert in bestselllers
+-- all from one sheet
+
+
 -- Stored procedure with multiple paramters
 CREATE PROCEDURE customer.GetOrderInformationByYearAndCustomerID (@check_year AS INT, @check_customer_id AS INT)
 AS

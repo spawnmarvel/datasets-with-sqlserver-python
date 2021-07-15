@@ -31,6 +31,12 @@ class AppController:
             logger.error(e)
             logger.error("Failed to retrieved password")
 
+
+    def create_or_check_procedure_insert_bestsellers(self):
+        select_rv = self.db_con_worker.create_or_check_procedure_insert_bestsellers()
+        for s in select_rv:
+            logger.info(s)
+
     def ctrl_insert_to_bestsellers(self):
         logger.info("Try insert bestsellers")
         # read the data csv file
