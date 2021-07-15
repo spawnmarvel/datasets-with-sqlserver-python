@@ -33,8 +33,10 @@ def main():
 
     # NOTE 6 Update prod schema with the bestsellers data
     # app_ctrl.create_or_check_procedure_insert_bestsellers_prod()
-    # NOTE 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
+    # NOTE 6.1 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
     # app_ctrl.ctrl_procedure_insert_bestsellers_prod()
+    # NOTE 6.2
+    app_ctrl.ctrl_create_or_check_view_bestsellers_authors_prod()
     # TODO delet id 1
     # app_ctrl.ctrl_delete_bestsellers(1)
     

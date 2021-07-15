@@ -136,3 +136,7 @@ class AppController:
             tmp_genre = b[6]
             self.db_con_worker.procedure_insert_bestsellers_prod(
                 b_name=tmp_name, a_name=tmp_author, b_rating=tmp_rating, b_reviews=tmp_reviews, b_price=tmp_price, b_year=tmp_year, b_genre=tmp_genre)
+
+
+    def ctrl_create_or_check_view_bestsellers_authors_prod(self):
+        select_rv = self.db_con_worker.create_or_check_view_bestsellers_authors_prod()

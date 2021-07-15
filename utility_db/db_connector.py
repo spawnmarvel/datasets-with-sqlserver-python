@@ -178,6 +178,9 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
+
+    
+
     # NOTE Not used due to procedure_insert_bestsellers(), cool
     def insert_select_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
@@ -222,7 +225,8 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE merge test.table to prod.table, beautiful!
+    # NOTE merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
+    # Merge tested with one table
     def merge_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table
@@ -373,5 +377,44 @@ class DbConnector:
             logger.error(params)
             logger.error(e)
 
+
+    # NOTE create view if not exists
+    def create_or_check_view_bestsellers_authors_prod(self):
+        logger.info("Try CREATE VIEW")
+        row = ""
+        try:
+            with self.cnxn:  # ctxmanger close
+                sql_check = "SELECT * FROM sys.views WHERE OBJECT_ID=OBJECT_ID('prodf.BestsellersAndAuthors');"
+                logger.info(sql_check)
+                self.cursor.execute(sql_check)
+                row = self.cursor.fetchall()
+                # it returns an empty list of not yet created
+                if not row:
+                    sql_create = """CREATE VIEW prod.BestsellersAndAuthors as
+                        SELECT
+                        a.a_id
+	                    ,a.a_name
+                        ,b.b_id
+                        ,b.b_name
+                        ,b.b_rating
+                        ,b.b_reviews
+                        ,b.b_price
+                        ,b.b_year
+                        ,b.b_genre
+                        ,b.author_b_id
+                        FROM DataSetsDb.prod.Authors as a
+                        INNER JOIN DataSetsDb.prod.BestSellers as b
+                        ON a.a_id = b.author_b_id;"""
+                    logger.info(sql_create)
+                    self.cursor.execute(sql_create)
+                    self.cnxn.commit()
+                    logger.info("CREATE VIEW done")
+                else:
+                    # logg the data atr about the view
+                    logger.info(row)
+
+                    return row
+        except Exception as e:
+            logger.error(e)
 
         
