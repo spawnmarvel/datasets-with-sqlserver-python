@@ -178,7 +178,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE Not used due to procedure for insert bestsellers and authors
+    # NOTE Not used due to procedure_insert_bestsellers(), cool
     def insert_select_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table in SSMS
