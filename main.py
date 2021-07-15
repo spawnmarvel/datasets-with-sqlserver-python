@@ -29,12 +29,15 @@ def main():
     # NOTE 4.2 Create a view of of 4.1
     # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
     # NOTE 5 Get data from the view
-    app_ctrl.ctrl_select_view_BestsellersAndAuthors()
+    # app_ctrl.ctrl_select_view_BestsellersAndAuthors()
 
-    # TODO 6
-    # TODO app_ctrl.ctrl_insert_select_test_to_prod()
+    # NOTE 6 Update prod schema with the bestsellers data
+    # app_ctrl.create_or_check_procedure_insert_bestsellers_prod()
+    # NOTE 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
+    # app_ctrl.ctrl_procedure_insert_bestsellers_prod()
     # TODO delet id 1
     # app_ctrl.ctrl_delete_bestsellers(1)
+    
 
     # TODO 7 Merge test.table to prod.table
     # app_ctrl.ctrl_merge_test_to_prod()

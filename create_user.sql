@@ -12,12 +12,12 @@ GO
 
 USE DataSetsDb
 GO
---CRUD
+-- CRUD
 
 GRANT SELECT,INSERT, UPDATE, DELETE ON test.BestSellers TO misp
 GRANT SELECT,INSERT, UPDATE, DELETE ON test.Authors TO misp
 
---GRANT CREATE VIEW, PROCEDURE (before create view)
+-- GRANT CREATE VIEW, PROCEDURE (before create view)
 USE DataSetsDb
 GO
 GRANT CREATE VIEW TO misp
@@ -30,10 +30,15 @@ GRANT ALTER ON SCHEMA::test TO misp
 GRANT SELECT ON SCHEMA::test TO misp
 --GRANT SELECT ON SCHEMA (after view was created the error was;The SELECT permission was denied on the object 'BestsellersAndAuthors', database 'DataSetsDb', schema 'test'. )
 
+
+USE DataSetsDb
+GO
+GRANT ALTER ON SCHEMA::prod TO misp
+GRANT SELECT ON SCHEMA::prod TO misp
 --GRANT EXECUTE ON PROC TO USE IT
 USE DataSetsDb
 GO
-GRANT EXECUTE ON OBJECT::test.InsertBestSellersAndAuthors TO misp
+GRANT EXECUTE ON OBJECT::prod.InsertBestSellersAndAuthors TO misp
 -- ****** PROD
 USE DataSetsDb
 GO

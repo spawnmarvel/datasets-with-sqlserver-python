@@ -188,7 +188,8 @@ class DbConnector:
                     ,b_reviews
                     ,b_price
                     ,b_year
-                    ,b_genre)
+                    ,b_genre
+                    ,author_b_id)
                     SELECT
                          b_name
                         ,b_rating
@@ -196,6 +197,7 @@ class DbConnector:
                         ,b_price
                         ,b_year
                         ,b_genre
+                        ,author_b_id
                         FROM test.BestSellers
                         WHERE NOT EXISTS (SELECT b_id FROM prod.BestSellers po WHERE po.b_id = test.BestSellers.b_id);"""
         sql_verify_prod = "SELECT COUNT(b_name) FROM prod.BestSellers"
@@ -316,3 +318,60 @@ class DbConnector:
         except Exception as e:
             logger.error(params)
             logger.error(e)
+
+
+    # NOTE create procedure if not exists
+    def create_or_check_procedure_insert_bestsellers_prod(self):
+        logger.info("Try CREATE PROCEDURE")
+        sql = """CREATE PROCEDURE prod.InsertBestSellersAndAuthors(
+                    @tmp_b_name NVARCHAR(300)
+                    ,@tmp_a_name NVARCHAR(100)
+                    , @tmp_b_rating FLOAT
+                    , @tmp_b_reviews INT
+                    , @tmp_b_price TINYINT
+                    , @tmp_b_year DATE
+                    , @tmp_b_genre VARCHAR(20))
+                    AS
+                        DECLARE @tmp_author_id INT;
+                        IF EXISTS (SELECT a_id FROM prod.Authors WHERE a_name = @tmp_a_name)
+                            BEGIN
+	                            SET @tmp_author_id = (SELECT a_id FROM prod.Authors WHERE a_name = @tmp_a_name);
+	                            INSERT INTO prod.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
+                            END
+                        ELSE
+                            BEGIN
+	                            INSERT INTO prod.Authors (a_name) VALUES (@tmp_a_name);
+	                            SET @tmp_author_id = (SELECT a_id FROM prod.Authors WHERE a_name = @tmp_a_name);
+	                            INSERT INTO prod.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
+                            END;"""
+        try:
+            with self.cnxn:  # ctxmanger close
+                self.cursor.execute(sql)
+                self.cnxn.commit()
+                logger.info(sql)
+                logger.info("CREATE PROCEDURE done")
+        except Exception as e:
+            logger.error(e)
+
+    # NOTE insert the raw bestsellers with categories.csv
+    def procedure_insert_bestsellers_prod(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
+        # we must validate all params before execute preocedure
+        sql = "EXEC prod.InsertBestSellersAndAuthors @tmp_b_name=? , @tmp_a_name=? , @tmp_b_rating=?, @tmp_b_reviews=?,@tmp_b_price=?,@tmp_b_year=?,@tmp_b_genre=?;"
+        # we never add the params as str in sql, we add them outside so we bypass SQL Injection
+        params = (b_name, a_name, b_rating,
+                  b_reviews, b_price, b_year, b_genre)
+        try:
+            with self.cnxn:  # ctxmanger close
+                # before we insert we can validate all params
+                self.cursor.execute(sql, params)
+                self.cnxn.commit()
+                logger.info(sql)
+                logger.info(params)
+        except Exception as e:
+            logger.error(params)
+            logger.error(e)
+
+
+        
