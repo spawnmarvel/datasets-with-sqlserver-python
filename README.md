@@ -45,3 +45,7 @@ TODO or Done's:
 
 Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)
+
+EER of schema test and prod for BestSellers from Kaggle (Amazon books)
+[![Screenshot](x_EER_bestsellers.jpg)
+

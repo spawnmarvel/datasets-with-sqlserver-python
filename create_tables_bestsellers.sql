@@ -53,5 +53,5 @@ CREATE TABLE prod.Authors (
 	a_id INT IDENTITY (1, 1) PRIMARY KEY,
 	a_name VARCHAR (200) NOT NULL,
 	author_book_id INT NOT NULL,
-	FOREIGN KEY (author_book_id) REFERENCES test.BestSellers (b_id) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (author_book_id) REFERENCES prod.BestSellers (b_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

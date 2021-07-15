@@ -1,5 +1,3 @@
-
-import logging
 import pyodbc
 from utility_logs.app_logger import Logger
 
