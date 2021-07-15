@@ -50,3 +50,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    logger.info("TODO: Refactor, organize, test **** prod in class, steps and sequence, use this just for make tables and insert data, ETL")
+    logger.info("TODO: When above is done, then you can dive into more advanced stuff")
