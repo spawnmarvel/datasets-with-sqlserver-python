@@ -18,6 +18,14 @@ This is safer than putting the values into the string because the parameters are
 protecting against SQL injection attacks. It is also be more efficient if you execute the same SQL repeatedly with different parameters. 
 The SQL will be "prepared" only once. (pyodbc keeps only the last prepared statement, so if you switch between statements, each will be prepared multiple times.)
 
+## Database Schemas
+* The flat model is for small, simple applications
+* The hierarchical model is for nested data, like XML or JSON
+* The network model is useful in mapping and spatial data, also for depicting workflows
+* The relational model best reflects Object-Oriented Programming applications
+* The star schema and snowflake schema are for analyzing large datasets
+
+* https://www.xplenty.com/blog/database-schema-examples/
 
 TODO or Done's:
 * DDL, bestsellers, author, f key on id 100%
