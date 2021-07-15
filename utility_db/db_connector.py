@@ -15,7 +15,7 @@ class DbConnector:
                                    ";DATABASE="+self.database+";UID="+self.username+";PWD=" + self.password)
         self.cursor = self.cnxn.cursor()
 
-    # test query
+    # NOTE test query
     def get_version(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -27,7 +27,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # Not used due to procedure for insert bestsellers and authors
+    # NOTE Not used due to procedure for insert bestsellers and authors
     def insert_bestsellers(self, b_name, b_rating, b_reviews, b_price, b_year, b_genre):
         sql = """INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre) VALUES (?,?,?,?,?, ?)"""
         rv = str(b_name) + "," + str(b_rating) + "," + str(b_reviews) + \
@@ -44,7 +44,7 @@ class DbConnector:
             logger.error(rv)
             logger.error(e)
 
-    # Not used due to procedure for insert bestsellers and authors
+    # NOTE Not used due to procedure for insert bestsellers and authors
     def insert_author(self, a_name, a_book_id):
         sql = """INSERT INTO test.Authors (a_name, author_book_id) VALUES (?,?)"""
         rv = str(a_name) + "," + str(a_book_id)
@@ -58,11 +58,11 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # Not used due to procedure for insert bestsellers and authors
+    # TODO Not used due to procedure for insert bestsellers and authors
     def update_bestsellers(self):
         pass
 
-    # Delete one row
+    # NOTE Delete one row
     def delete_bestsellers(self, remove_id):
         sql = "DELETE FROM prod.BestSellers where b_id = (?)"
         rv = str(remove_id)
@@ -76,7 +76,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # Select all
+    # NOTE Select all
     def select_all_bestsellers(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -88,9 +88,9 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # Advanced TSQL
+    # NOTE Advanced TSQL
 
-    # Join bestsellers and authors
+    # NOTE Join bestsellers and authors
     def select_inner_join_bestsellers_authors(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -115,7 +115,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # create view if not exists
+    # NOTE create view if not exists
     def create_or_check_view_bestsellers_authors(self):
         logger.info("Try CREATE VIEW")
         row = ""
@@ -154,7 +154,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # select view
+    # NOTE select view
     def select_view_BestsellersAndAuthors(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -166,7 +166,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # select view order rating
+    # NOTE select view order rating
     def select_view_BestsellersAndAuthors_order_by_rating(self):
         try:
             with self.cnxn:  # ctxmanger close #ctxmanger close
@@ -178,7 +178,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # Not used due to procedure for insert bestsellers and authors
+    # NOTE Not used due to procedure for insert bestsellers and authors
     def insert_select_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table in SSMS
@@ -220,7 +220,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # merge test.table to prod.table, beautiful!
+    # NOTE merge test.table to prod.table, beautiful!
     def merge_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table
@@ -264,7 +264,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # create procedure if not exists
+    # NOTE create procedure if not exists
     def create_or_check_procedure_insert_bestsellers(self):
         logger.info("Try CREATE PROCEDURE")
         sql = """CREATE PROCEDURE test.InsertBestSellersAndAuthors(
@@ -299,7 +299,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # insert the raw bestsellers with categories.csv
+    # NOTE insert the raw bestsellers with categories.csv
     def procedure_insert_bestsellers(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
         # we must validate all params before execute preocedure
         sql = "EXEC test.InsertBestSellersAndAuthors @tmp_b_name=? , @tmp_a_name=? , @tmp_b_rating=?, @tmp_b_reviews=?,@tmp_b_price=?,@tmp_b_year=?,@tmp_b_genre=?;"
