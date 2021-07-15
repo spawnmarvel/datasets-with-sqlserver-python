@@ -1,4 +1,5 @@
-
+-- HOW TO
+-- do it in steps and test the logic, after just wrap it in a create statment
 -- get author id
 -- if null
 -- then insert author and bestsellers
