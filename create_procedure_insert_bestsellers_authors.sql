@@ -1,51 +1,48 @@
--- HOW TO
--- do it in steps and test the logic, after just wrap it in a create statment
--- get author id
--- if null
--- then insert author and bestsellers
--- else
--- use the id and insert in bestselllers
--- all from one sheet
-
-
--- Stored procedure with multiple paramters
-CREATE PROCEDURE customer.GetOrderInformationByYearAndCustomerID (@check_year AS INT, @check_customer_id AS INT)
+CREATE PROCEDURE test.InsertBestSellersAndAuthors(
+@tmp_b_name NVARCHAR(300)
+,@tmp_a_name NVARCHAR(100)
+, @tmp_b_rating FLOAT
+, @tmp_b_reviews INT
+, @tmp_b_price TINYINT
+, @tmp_b_year DATE
+, @tmp_b_genre VARCHAR(20))
 AS
---Get all order information on customers by year
-SELECT sod.[SalesOrderID]
-      ,sod.[OrderQty]
-      ,sod.[ProductID]
-      ,sod.[SpecialOfferID]
-      ,sod.[UnitPrice]
-      ,sod.[UnitPriceDiscount]
-      ,sod.[LineTotal]
-	  ,soh.CustomerID
-	  ,soh.OrderDate
-FROM [AdventureWorks].[Sales].[SalesOrderDetail] AS sod
-INNER JOIN sales.SalesOrderHeader AS soh ON soh.SalesOrderID=sod.SalesOrderID
-WHERE YEAR(soh.OrderDate)= @check_year
-AND soh.CustomerID=@check_customer_id
-ORDER BY sod.LineTotal desc
+DECLARE @tmp_author_id INT;
 
 
-USE test;
-GO
-
--- if set to 0, then error
-DECLARE @my_num varchar(20) = '0';
-BEGIN TRY
-	PRINT 10 / @my_num;
-END TRY
-BEGIN CATCH
-	PRINT 'Er msg ' + CAST(ERROR_NUMBER() AS varchar(12)) + ';' + ERROR_MESSAGE();
-END CATCH
-
-
-IF EXISTS (SELECT * FROM tblGLUserAccess WHERE GLUserName ='xxxxxxxx') 
+IF EXISTS (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name)
 BEGIN
-   SELECT 1 
+	PRINT 'Insert bestsellers with author @tmp_id';
+	SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
+	INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
 END
 ELSE
 BEGIN
-    SELECT 2
+	PRINT 'Insert bestsellers and author'
+	INSERT INTO test.Authors (a_name) VALUES (@tmp_a_name);
+	SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
+	INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
 END
+
+
+--right click SSMS and select Execure storedprocedure
+--You can then add data and go, result is
+USE [DataSetsDb]
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [test].[InsertBestSellersAndAuthors]
+		@tmp_b_name = N'BOOK1',
+		@tmp_a_name = N'ESPEN',
+		@tmp_b_rating = 2,
+		@tmp_b_reviews = 23,
+		@tmp_b_price = 1,
+		@tmp_b_year = '01-01-2016',
+		@tmp_b_genre = N'FUN'
+
+SELECT	'Return Value' = @return_value
+
+GO
