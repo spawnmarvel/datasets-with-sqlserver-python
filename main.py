@@ -39,7 +39,7 @@ def main():
     # TODO 7 Merge test.table to prod.table
     # app_ctrl.ctrl_merge_test_to_prod()
     # TODO 8 After merge, alter some row in test and do merge again to verify that it works as it should, (it does btw)
-    # TODO 9, hm
+    # TODO 9 Create procedure of merge, yea!!!
 
 
 if __name__ == "__main__":

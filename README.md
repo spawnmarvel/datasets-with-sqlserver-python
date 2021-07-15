@@ -55,5 +55,8 @@ Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)
 
 EER of schema test and prod for BestSellers from Kaggle (Amazon books)
+* Prod and test is self-explanatory
+* test.InsertBestSellersAndAuthors, uses the raw Kaggle data as-is
+* test.BestsellersAndAuthors, joins both tables
 [![Screenshot](x_EER_schema_bestsellers.jpg)
 
