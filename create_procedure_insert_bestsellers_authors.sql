@@ -12,14 +12,14 @@ DECLARE @tmp_author_id INT;
 
 IF EXISTS (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name)
 BEGIN
-	PRINT 'Insert bestsellers with author @tmp_id';
+	--PRINT 'Insert bestsellers with author @tmp_id';
 	SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
 	INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
 	VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
 END
 ELSE
 BEGIN
-	PRINT 'Insert bestsellers and author'
+	--PRINT 'Insert bestsellers and author'
 	INSERT INTO test.Authors (a_name) VALUES (@tmp_a_name);
 	SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
 	INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
