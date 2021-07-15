@@ -1,3 +1,8 @@
+--https://docs.microsoft.com/en-us/sql/t-sql/statements/set-nocount-transact-sql?view=sql-server-ver15
+-- SET NOCOUNT { ON | OFF }   
+-- Stops the message that shows the count of the number of rows affected by a Transact-SQL statement or stored procedure from being returned as part of the result set.
+-- setting SET NOCOUNT to ON can provide a significant performance boost, because network traffic is greatly reduced.
+
 CREATE PROCEDURE test.InsertBestSellersAndAuthors(
 @tmp_b_name NVARCHAR(300)
 ,@tmp_a_name NVARCHAR(100)
@@ -29,7 +34,7 @@ END
 
 --right click SSMS and select Execure stored procedure
 --You can then add data and go and test it like this, return value is 0:
-USE [DataSetsDb]
+USE DataSetsDb
 GO
 
 DECLARE	@return_value int

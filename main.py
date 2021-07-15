@@ -14,22 +14,32 @@ def main():
     logger.info(
         "** When done, set [handler_consoleHandler], level=ERROR, it is now level=INFO. So all that goes to file does also go to std out ")
     app_ctrl = AppController()
-    # na app_ctrl.ctrl_insert_to_bestsellers()
-    # fix app_ctrl.ctrl_select_all_bestsellers()
-    # na app_ctrl.ctrl_insert_authors()
-    # fix app_ctrl.ctrl_select_inner_join_bestsellers_authors()
-    # fix app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
-    # fix app_ctrl.ctrl_select_view_BestsellersAndAuthors()
-    # fic app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
-    # na app_ctrl.ctrl_insert_select_test_to_prod()
-    # delet id 1
-    # na app_ctrl.ctrl_delete_bestsellers(1)
-    # alter prod b_id 1, rating to 100, was 4.7, and add an extra row b_id 551 with dummy data, does merge fix it, update 1 and delete 551?= YES
 
-    # 
-    # fix app_ctrl.ctrl_merge_test_to_prod()
-    # above insert can be replaced with
-    app_ctrl.create_or_check_procedure_insert_bestsellers()
+    # Flow of order
+    # 1 Create the tables directly in SQL SERVER
+    # 2
+    # app_ctrl.create_or_check_procedure_insert_bestsellers()
+    # 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
+    # app_ctrl.ctrl_procedure_insert_bestsellers()
+    # 4 Get all
+    # app_ctrl.ctrl_select_all_bestsellers()
+    # app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
+    # 4.1 Join both authors and bestsellers
+    # app_ctrl.ctrl_select_inner_join_bestsellers_authors()
+    # 4.2 Create a view of of 4.1
+    # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
+    # 5 Get data from the view
+    app_ctrl.ctrl_select_view_BestsellersAndAuthors()
+
+    # TODO 6
+    # app_ctrl.ctrl_insert_select_test_to_prod()
+    # delet id 1
+    # app_ctrl.ctrl_delete_bestsellers(1)
+
+    # TODO 7 Merge test.table to prod.table
+    # app_ctrl.ctrl_merge_test_to_prod()
+    # TODO 8 After merge, alter some row in test and do merge again to verify that it works as it should, (it does btw)
+    # TODO 9, hm
 
 
 if __name__ == "__main__":
