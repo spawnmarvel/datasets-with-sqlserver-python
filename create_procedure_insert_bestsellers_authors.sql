@@ -27,8 +27,8 @@ BEGIN
 END
 
 
---right click SSMS and select Execure storedprocedure
---You can then add data and go, result is
+--right click SSMS and select Execure stored procedure
+--You can then add data and go and test it like this, return value is 0:
 USE [DataSetsDb]
 GO
 
