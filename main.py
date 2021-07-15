@@ -16,24 +16,24 @@ def main():
     app_ctrl = AppController()
 
     # Flow of order
-    # 1 Create the tables directly in SQL SERVER
-    # 2
+    # NOTE 1 Create the tables directly in SQL SERVER
+    # NOTE 2
     # app_ctrl.create_or_check_procedure_insert_bestsellers()
-    # 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
+    # NOTE 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
     # app_ctrl.ctrl_procedure_insert_bestsellers()
-    # 4 Get all
+    # NOTE 4 Get all
     # app_ctrl.ctrl_select_all_bestsellers()
     # app_ctrl.ctrl_select_view_BestsellersAndAuthors_order_by_rating()
-    # 4.1 Join both authors and bestsellers
+    # NOTE 4.1 Join both authors and bestsellers
     # app_ctrl.ctrl_select_inner_join_bestsellers_authors()
-    # 4.2 Create a view of of 4.1
+    # NOTE 4.2 Create a view of of 4.1
     # app_ctrl.ctrl_create_or_check_view_bestsellers_authors()
-    # 5 Get data from the view
+    # NOTE 5 Get data from the view
     app_ctrl.ctrl_select_view_BestsellersAndAuthors()
 
     # TODO 6
-    # app_ctrl.ctrl_insert_select_test_to_prod()
-    # delet id 1
+    # TODO app_ctrl.ctrl_insert_select_test_to_prod()
+    # TODO delet id 1
     # app_ctrl.ctrl_delete_bestsellers(1)
 
     # TODO 7 Merge test.table to prod.table
