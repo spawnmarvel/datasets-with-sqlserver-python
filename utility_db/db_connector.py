@@ -179,7 +179,6 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-
 # **** PROD ****
 
     # NOTE create procedure if not exists
