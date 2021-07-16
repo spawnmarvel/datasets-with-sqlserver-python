@@ -241,7 +241,7 @@ class DbConnector:
         row = ""
         try:
             with self.cnxn:  # ctxmanger close
-                sql_check = "SELECT * FROM sys.views WHERE OBJECT_ID=OBJECT_ID('prodf.BestsellersAndAuthors');"
+                sql_check = "SELECT * FROM sys.views WHERE OBJECT_ID=OBJECT_ID('prod.BestsellersAndAuthors');"
                 logger.info(sql_check)
                 self.cursor.execute(sql_check)
                 row = self.cursor.fetchall()
