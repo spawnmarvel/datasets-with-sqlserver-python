@@ -37,19 +37,14 @@ def main():
     # app_ctrl.ctrl_procedure_insert_bestsellers_prod()
     # NOTE 6.2
     app_ctrl.ctrl_create_or_check_view_bestsellers_authors_prod()
-    # TODO delet id 1
-    # app_ctrl.ctrl_delete_bestsellers(1)
     
 
-    # TODO 7 Merge test.table to prod.table
-    # app_ctrl.ctrl_merge_test_to_prod()
-    # TODO 8 After merge, alter some row in test and do merge again to verify that it works as it should, (it does btw)
-    # TODO 9 Create procedure of merge, yea!!!
-    # TODO Get more advanced Kaggle data and do DDL, table, procedure insert, merge test prod and complex query, yea
+    # TODO 1: Refactor, organize, test **** prod in class, steps and sequence, use this just for make tables and insert data, ETL"
+    # TODO 2: When above is done, then you can dive into more advanced stuff"
+    # TODO 3: Load other Kaggle data and repeat TODO 2"
 
 
 if __name__ == "__main__":
     main()
-    logger.info("TODO 1: Refactor, organize, test **** prod in class, steps and sequence, use this just for make tables and insert data, ETL")
-    logger.info("TODO 2: When above is done, then you can dive into more advanced stuff")
-    logger.info("TODO 3: Load other Kaggle data and repeat TODO 2")
+    logger.info("*** Main started, alter loglevel for handler_consoleHandler when done")
+
