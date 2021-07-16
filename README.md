@@ -1,10 +1,12 @@
 # datasets-with-sqlserver-python
 Having fun with Kaggle data, SQL Server and Python (pyodbc).
 
-## Links 
+## Information
+### Links
+SSMS:
 [SQL SERVER SSMS] https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
-
-[![Screenshot](x_SSMS.jpg)
+Must check out this Azure Data Studio
+[![Screenshot](x_SSMS_AZ.jpg)
 
 [Kaggle public datasets] https://www.kaggle.com/sootersaalu/amazon-top-50-bestselling-books-2009-2019?select=bestsellers+with+categories.csv
 
@@ -18,7 +20,7 @@ This is safer than putting the values into the string because the parameters are
 protecting against SQL injection attacks. It is also be more efficient if you execute the same SQL repeatedly with different parameters. 
 The SQL will be "prepared" only once. (pyodbc keeps only the last prepared statement, so if you switch between statements, each will be prepared multiple times.)
 
-## Database Schemas
+### Database Schemas
 * The flat model is for small, simple applications
 * The hierarchical model is for nested data, like XML or JSON
 * The network model is useful in mapping and spatial data, also for depicting workflows
@@ -65,5 +67,5 @@ EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 1. Create tables from crt_tables_bestsellers.sql in SSMS
 2. Grant user rights with crt_user.sql in SSMS
 3. Now we use then test.tables
-4. 
+4. Download the bestsellers with categories.csv from kaggle or here, it is just raw data
 5. 
