@@ -26,7 +26,6 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 2 create procedure if not exists
-
     def create_or_check_procedure_insert_bestsellers(self):
         logger.info("Try CREATE PROCEDURE")
         sql = """CREATE PROCEDURE test.InsertBestSellersAndAuthors(
@@ -182,7 +181,6 @@ class DbConnector:
 
     # NOTE merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
     # Merge tested with one table
-
     def merge_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table
@@ -230,7 +228,6 @@ class DbConnector:
 # **** PROD ****
 
     # NOTE create procedure if not exists
-
     def create_or_check_procedure_insert_bestsellers_prod(self):
         logger.info("Try CREATE PROCEDURE")
         sql = """CREATE PROCEDURE prod.InsertBestSellersAndAuthors(
