@@ -179,8 +179,8 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
-    # Merge tested with one table
+    # FIXME merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
+    # Merge tested with one table as code below works
     def merge_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table
