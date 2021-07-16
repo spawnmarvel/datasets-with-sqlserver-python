@@ -7,6 +7,7 @@ SSMS:
 [SQL SERVER SSMS] https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
 
 Must check out this Azure Data Studio
+
 [![Screenshot](x_SSMS_AZ.jpg)
 
 [Kaggle public datasets] https://www.kaggle.com/sootersaalu/amazon-top-50-bestselling-books-2009-2019?select=bestsellers+with+categories.csv
