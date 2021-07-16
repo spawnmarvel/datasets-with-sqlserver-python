@@ -5,6 +5,7 @@ Having fun with Kaggle data, SQL Server and Python (pyodbc).
 ### Links
 SSMS:
 [SQL SERVER SSMS] https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+
 Must check out this Azure Data Studio
 [![Screenshot](x_SSMS_AZ.jpg)
 
