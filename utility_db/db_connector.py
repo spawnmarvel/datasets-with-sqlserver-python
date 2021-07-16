@@ -179,51 +179,6 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # FIXME merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
-    # Merge tested with one table as code below works
-    def merge_test_to_prod(self):
-        # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
-        # First we create a mirror of test.table to prod.table
-        # Then we do the merge
-        logger.info("Try MERGE test to prod")
-        sql = """MERGE prod.BestSellers AS target
-                 USING test.BestSellers AS source
-                 ON source.b_id = target.b_id
-                 
-                 WHEN NOT MATCHED BY target THEN
-                    INSERT (b_name
-                        ,b_rating
-                        ,b_reviews
-                        ,b_price
-                        ,b_year
-                        ,b_genre)
-                        VALUES(source.b_name
-                        ,source.b_rating
-                        ,source.b_reviews
-                        ,source.b_price
-                        ,source.b_year
-                        ,source.b_genre)
-
-                WHEN MATCHED THEN UPDATE SET
-                        target.b_name=source.b_name
-                        ,target.b_rating=source.b_rating
-                        ,target.b_reviews=source.b_reviews
-                        ,target.b_price=source.b_price
-                        ,target.b_year=source.b_year
-                        ,target.b_genre=source.b_genre
-                
-                WHEN NOT MATCHED BY source THEN
-                    DELETE;"""
-        # OUTPUT $action,deleted.*,inserted.*;
-        try:
-            with self.cnxn:  # ctxmanger close
-                self.cursor.execute(sql)
-                self.cnxn.commit()
-                logger.info(sql)
-                logger.info("Merge done")
-        except Exception as e:
-            logger.error(e)
-
 
 # **** PROD ****
 
