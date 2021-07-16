@@ -60,3 +60,10 @@ EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 * View:test.BestsellersAndAuthors, joins both tables
 [![Screenshot](x_EER_schema_bestsellers.jpg)
 
+## HOW TO bestsellers with categories.csv
+
+1. Create tables from crt_tables_bestsellers.sql in SSMS
+2. Grant user rights with crt_user.sql in SSMS
+3. Now we use then test.tables
+4. 
+5. 
