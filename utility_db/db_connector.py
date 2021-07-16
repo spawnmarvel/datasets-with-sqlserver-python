@@ -15,7 +15,7 @@ class DbConnector:
                                    ";DATABASE="+self.database+";UID="+self.username+";PWD=" + self.password)
         self.cursor = self.cnxn.cursor()
 
-    # NOTE test query
+    # NOTE 1 test query 
     def get_version(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -25,8 +25,61 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
+    # NOTE 2 create procedure if not exists
 
-    # NOTE Select all
+    def create_or_check_procedure_insert_bestsellers(self):
+        logger.info("Try CREATE PROCEDURE")
+        sql = """CREATE PROCEDURE test.InsertBestSellersAndAuthors(
+                    @tmp_b_name NVARCHAR(300)
+                    ,@tmp_a_name NVARCHAR(100)
+                    , @tmp_b_rating FLOAT
+                    , @tmp_b_reviews INT
+                    , @tmp_b_price TINYINT
+                    , @tmp_b_year DATE
+                    , @tmp_b_genre VARCHAR(20))
+                    AS
+                        DECLARE @tmp_author_id INT;
+                        IF EXISTS (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name)
+                            BEGIN
+	                            SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
+	                            INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
+                            END
+                        ELSE
+                            BEGIN
+	                            INSERT INTO test.Authors (a_name) VALUES (@tmp_a_name);
+	                            SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
+	                            INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
+	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
+                            END;"""
+        try:
+            with self.cnxn:  # ctxmanger close
+                self.cursor.execute(sql)
+                self.cnxn.commit()
+                logger.info(sql)
+                logger.info("CREATE PROCEDURE done")
+        except Exception as e:
+            logger.error(e)
+
+    # NOTE 3 insert the raw bestsellers with categories.csv
+    def procedure_insert_bestsellers(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
+        # we must validate all params before execute preocedure
+        sql = "EXEC test.InsertBestSellersAndAuthors @tmp_b_name=? , @tmp_a_name=? , @tmp_b_rating=?, @tmp_b_reviews=?,@tmp_b_price=?,@tmp_b_year=?,@tmp_b_genre=?;"
+        # we never add the params as str in sql, we add them outside so we bypass SQL Injection
+        params = (b_name, a_name, b_rating,
+                  b_reviews, b_price, b_year, b_genre)
+        try:
+            with self.cnxn:  # ctxmanger close
+                # before we insert we can validate all params
+                self.cursor.execute(sql, params)
+                self.cnxn.commit()
+                logger.info(sql)
+                logger.info(params)
+        except Exception as e:
+            logger.error(params)
+            logger.error(e)
+
+    # NOTE 4 Select all
     def select_all_bestsellers(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -38,9 +91,8 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE Advanced TSQL
 
-    # NOTE Join bestsellers and authors
+    # NOTE 5 Join bestsellers and authors
     def select_inner_join_bestsellers_authors(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -65,7 +117,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE create view if not exists
+    # NOTE 6 create view if not exists
     def create_or_check_view_bestsellers_authors(self):
         logger.info("Try CREATE VIEW")
         row = ""
@@ -104,7 +156,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE select view
+    # NOTE 7 select view
     def select_view_BestsellersAndAuthors(self):
         try:
             with self.cnxn:  # ctxmanger close
@@ -116,7 +168,7 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE select view order rating
+    # NOTE 8 select view order rating
     def select_view_BestsellersAndAuthors_order_by_rating(self):
         try:
             with self.cnxn:  # ctxmanger close #ctxmanger close
@@ -128,9 +180,9 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-
     # NOTE merge test.table to prod.table, beautiful! But not used after procedure, due to insert into two tables
     # Merge tested with one table
+
     def merge_test_to_prod(self):
         # https://docs.microsoft.com/en-us/sql/t-sql/statements/merge-transact-sql?view=sql-server-ver15
         # First we create a mirror of test.table to prod.table
@@ -174,61 +226,11 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-    # NOTE create procedure if not exists
-    def create_or_check_procedure_insert_bestsellers(self):
-        logger.info("Try CREATE PROCEDURE")
-        sql = """CREATE PROCEDURE test.InsertBestSellersAndAuthors(
-                    @tmp_b_name NVARCHAR(300)
-                    ,@tmp_a_name NVARCHAR(100)
-                    , @tmp_b_rating FLOAT
-                    , @tmp_b_reviews INT
-                    , @tmp_b_price TINYINT
-                    , @tmp_b_year DATE
-                    , @tmp_b_genre VARCHAR(20))
-                    AS
-                        DECLARE @tmp_author_id INT;
-                        IF EXISTS (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name)
-                            BEGIN
-	                            SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
-	                            INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
-	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
-                            END
-                        ELSE
-                            BEGIN
-	                            INSERT INTO test.Authors (a_name) VALUES (@tmp_a_name);
-	                            SET @tmp_author_id = (SELECT a_id FROM test.Authors WHERE a_name = @tmp_a_name);
-	                            INSERT INTO test.BestSellers (b_name, b_rating, b_reviews, b_price, b_year, b_genre, author_b_id) 
-	                            VALUES (@tmp_b_name, @tmp_b_rating, @tmp_b_reviews, @tmp_b_price, @tmp_b_year, @tmp_b_genre, @tmp_author_id)
-                            END;"""
-        try:
-            with self.cnxn:  # ctxmanger close
-                self.cursor.execute(sql)
-                self.cnxn.commit()
-                logger.info(sql)
-                logger.info("CREATE PROCEDURE done")
-        except Exception as e:
-            logger.error(e)
 
-    # NOTE insert the raw bestsellers with categories.csv
-    def procedure_insert_bestsellers(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
-        # we must validate all params before execute preocedure
-        sql = "EXEC test.InsertBestSellersAndAuthors @tmp_b_name=? , @tmp_a_name=? , @tmp_b_rating=?, @tmp_b_reviews=?,@tmp_b_price=?,@tmp_b_year=?,@tmp_b_genre=?;"
-        # we never add the params as str in sql, we add them outside so we bypass SQL Injection
-        params = (b_name, a_name, b_rating,
-                  b_reviews, b_price, b_year, b_genre)
-        try:
-            with self.cnxn:  # ctxmanger close
-                # before we insert we can validate all params
-                self.cursor.execute(sql, params)
-                self.cnxn.commit()
-                logger.info(sql)
-                logger.info(params)
-        except Exception as e:
-            logger.error(params)
-            logger.error(e)
-
+# **** PROD ****
 
     # NOTE create procedure if not exists
+
     def create_or_check_procedure_insert_bestsellers_prod(self):
         logger.info("Try CREATE PROCEDURE")
         sql = """CREATE PROCEDURE prod.InsertBestSellersAndAuthors(
@@ -281,8 +283,8 @@ class DbConnector:
             logger.error(params)
             logger.error(e)
 
-
     # NOTE create view if not exists
+
     def create_or_check_view_bestsellers_authors_prod(self):
         logger.info("Try CREATE VIEW")
         row = ""
@@ -320,5 +322,3 @@ class DbConnector:
                     return row
         except Exception as e:
             logger.error(e)
-
-        
