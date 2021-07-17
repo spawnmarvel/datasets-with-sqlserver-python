@@ -3,6 +3,10 @@ Having fun with Kaggle data, SQL Server and Python (pyodbc).
 
 ## Information
 ### Links
+SQL:
+
+[Microsoft SQL documentation]https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15
+
 SSMS:
 [SQL SERVER SSMS] https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
 
@@ -36,6 +40,7 @@ TODO or Done's:
 * Db con 100%
 * DB close
 * https://stackoverflow.com/questions/3783238/python-database-connection-close
+* TCP viewer and Wireshark check call's, close
 * Logger 100%
 * Datasets 100%
 * Read file 100%
@@ -45,15 +50,11 @@ TODO or Done's:
 * T-SQL CRUD bestsellers data 50%
 * T-SQL Advanced
 * Views
-* https://docs.microsoft.com/en-us/sql/relational-databases/views/views?view=sql-server-ver15
 * Joins
-* https://docs.microsoft.com/en-us/sql/relational-databases/performance/joins?view=sql-server-ver15
 * Procedure
-* https://docs.microsoft.com/en-us/sql/t-sql/statements/create-procedure-transact-sql?view=sql-server-ver15
 * TBD
 * Tkinter GUI, MVC
-* https://realpython.com/python-gui-tkinter/#adding-a-widget
-* https://medium.com/swlh/python-oop-mvc-data-science-tkinter-23c3e8dab70f
+
 
 Example of output in logs:
 [![Screenshot](x_logs_and_join_bestsellers2.jpg)
@@ -71,3 +72,6 @@ EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 3. Now we use then test.tables
 4. Download the bestsellers with categories.csv from kaggle or here, it is just raw data
 5. 
+
+
+## 2 HOW TO bestsellers with new topic
