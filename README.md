@@ -74,4 +74,4 @@ EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 5. 
 
 
-## 2 HOW TO bestsellers with new topic
+## 2 HOW TO bestsellers with new topic tbd
