@@ -52,7 +52,7 @@ TODO or Done's:
 
 EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 
-[![Screenshot]([![Screenshot](x_SSMS_AZ.jpg))
+[![Screenshot](x_EER_schema1_bestsellers.jpg)
 
 ## 1 HOW TO bestsellers with categories.csv
 
