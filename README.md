@@ -54,7 +54,7 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 
 [![Screenshot](x_EER_schema1_bestsellers.jpg)
 
-## 1 HOW TO bestsellers with categories.csv
+## 1 How to ETL (Extract, Transform* and Load*) bestsellers with categories.csv Python, pyodbc and T-SQL
 
 1. Create tables with crt_1_tables_bestsellers.sql in SSMS.
 2. Create user CRUD rights with crt_user_grant.sql in SSMS (step 1, 2 and 3).
@@ -68,8 +68,7 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 7. We can now do data operations.
 8. We then create a view on test, a inner join of both using the f-key.
 9. We can now do more fun data operations.
-
 10. We can now do the same in prod, repeat step 2 to 9 (the prod.table was created in 1, but grant must be done on prod.table's)
+11. All data has now been prepared for the next step:
 
-
-## 2 HOW TO bestsellers with new topic tbd
+## 2 How to bestsellers T-SQL
