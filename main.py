@@ -16,8 +16,8 @@ def main():
     app_ctrl = AppController()
 
     # Flow of order
-    # NOTE 1 Create the tables directly in SQL SERVER
-    # NOTE 2
+    # NOTE 1 Create the tables, user ande grant access directly in SQL SERVER
+    # NOTE 2 Create the procedure for insert in test
     # app_ctrl.create_or_check_procedure_insert_bestsellers()
     # NOTE 3 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
     # app_ctrl.ctrl_procedure_insert_bestsellers()
@@ -36,7 +36,7 @@ def main():
     # NOTE 6.1 Read in the bestsellers excel downloaded from kaggle just as it is, no alter it, insert both or just one table
     # app_ctrl.ctrl_procedure_insert_bestsellers_prod()
     # NOTE 6.2
-    app_ctrl.ctrl_create_or_check_view_bestsellers_authors_prod()
+    # app_ctrl.ctrl_create_or_check_view_bestsellers_authors_prod()
     
 
     # TODO 1: Refactor, organize, test **** prod in class, steps and sequence, use this just for make tables and insert data, ETL"

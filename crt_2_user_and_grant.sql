@@ -1,36 +1,28 @@
 
-
 -- ****** TEST
 -- Creates the login misp with password provided in ''
+-- 1.1 
 -- CREATE LOGIN misp WITH PASSWORD = '';  
--- GO
 
--- Creates a database user for the login created above.  
+--  1 Creates a database user for the login created above.  
 CREATE USER misp FOR LOGIN misp;  
 --
 GO 
-
 USE DataSetsDb
 GO
--- CRUD
-
+-- 2 CRUD operations
 GRANT SELECT,INSERT, UPDATE, DELETE ON test.BestSellers TO misp
 GRANT SELECT,INSERT, UPDATE, DELETE ON test.Authors TO misp
 
--- GRANT CREATE VIEW, PROCEDURE (before create view)
-USE DataSetsDb
-GO
+-- 3 GRANT CREATE VIEW, PROCEDURE (before create view and procedure)
+
 GRANT CREATE VIEW TO misp
 GRANT CREATE PROCEDURE TO misp
-
--- The specified schema name "test" either does not exist or you do not have permission to use it (hm, did not have access to schema)
-USE DataSetsDb
-GO
 GRANT ALTER ON SCHEMA::test TO misp
 GRANT SELECT ON SCHEMA::test TO misp
---GRANT SELECT ON SCHEMA (after view was created the error was;The SELECT permission was denied on the object 'BestsellersAndAuthors', database 'DataSetsDb', schema 'test'. )
 
 
+-- ****** PROD
 USE DataSetsDb
 GO
 GRANT ALTER ON SCHEMA::prod TO misp
@@ -39,7 +31,7 @@ GRANT SELECT ON SCHEMA::prod TO misp
 USE DataSetsDb
 GO
 GRANT EXECUTE ON OBJECT::prod.InsertBestSellersAndAuthors TO misp
--- ****** PROD
+
 USE DataSetsDb
 GO
 --CRUD

@@ -57,12 +57,12 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 ## 1 HOW TO bestsellers with categories.csv
 
 1. Create tables with crt_1_tables_bestsellers.sql in SSMS
-2. Create user CRUD rights with crt_user.sql in SSMS
-3. We use then test.table's first to verify before implementing prod.table's
-4. A note about the data:bestsellers with categories.csv from kaggle or here, it is just raw data
-* The format must be (b for book, a for author); b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre.
-* We then read the .csv and call the test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) to insert data like this:
-* If it exists an author, we get the id and insert the book data, else we insert author and book data.
+2. Create user CRUD rights with crt_user_grant.sql in SSMS (step 1, 2 and 3 )
+3. We use the test.table's first to verify before implementing prod.table's
+*   A note about the data:bestsellers with categories.csv from kaggle or here, it is just raw data
+*   The format must be (b for book, a for author); b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre.
+4. We then read the .csv and call the test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) to insert data:
+*   If it exists an author, we get the id and insert the book data, else we insert author and book data.
 5. 
 
 

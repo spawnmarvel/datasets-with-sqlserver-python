@@ -4,8 +4,8 @@ use DataSetsDb;
 go
 -- IF NOT EXISTS(SELECT * FROM sys.schemas WHERE NAME = "test" ) EXEC('CREATE SCHEMA [test]');
 -- or 
-CREATE SCHEMA test;
-go
+-- CREATE SCHEMA test;
+  go
 
 -- create tables
 -- varchar: Variable-length, non-Unicode character data. The database collation determines which code page the data is stored using.
@@ -36,8 +36,8 @@ CREATE TABLE test.BestSellers (
 -- ****** PROD
 use DataSetsDb;
 go
-CREATE SCHEMA prod;
-go
+-- CREATE SCHEMA prod;
+-- go
 
 -- create tables
 CREATE TABLE prod.Authors (
@@ -57,3 +57,6 @@ CREATE TABLE prod.BestSellers (
 	FOREIGN KEY (author_b_id) REFERENCES prod.Authors (a_id) ON DELETE CASCADE ON UPDATE CASCADE
 	
 );
+
+-- Remove all rows
+-- DELETE FROM [DataSetsDb].[test].[BestSellers]
