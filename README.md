@@ -31,7 +31,6 @@ The SQL will be "prepared" only once. (pyodbc keeps only the last prepared state
 * The network model is useful in mapping and spatial data, also for depicting workflows
 * The relational model best reflects Object-Oriented Programming applications
 * The star schema and snowflake schema are for analyzing large datasets
-
 * https://www.xplenty.com/blog/database-schema-examples/
 
 TODO or Done's:
@@ -47,16 +46,9 @@ TODO or Done's:
 * Insert bestsellers data 100%
 * Prepared statment for data 80%
 * T-SQL CRUD bestsellers data 50%
-* T-SQL Advanced
-* Views
-* Joins
-* Procedure
+* T-SQL Advanced, Views,Joins, Procedure's, Merge etc
 * TBD
 * Tkinter GUI, MVC
-
-
-Example of output in logs:
-[![Screenshot](x_logs_and_join_bestsellers2.jpg)
 
 EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 * Prod and test is self-explanatory
@@ -66,10 +58,13 @@ EER of schema test and prod for BestSellers from Kaggle (Amazon books)
 
 ## 1 HOW TO bestsellers with categories.csv
 
-1. Create tables from crt_tables_bestsellers.sql in SSMS
-2. Grant user rights with crt_user.sql in SSMS
-3. Now we use then test.tables
-4. Download the bestsellers with categories.csv from kaggle or here, it is just raw data
+1. Create tables with crt_1_tables_bestsellers.sql in SSMS
+2. Create user CRUD rights with crt_user.sql in SSMS
+3. We use then test.table's first to verify before implementing prod.table's
+4. A note about the data:bestsellers with categories.csv from kaggle or here, it is just raw data
+* The format must be (b for book, a for author); b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre.
+* We then read the .csv and call the test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) to insert data like this:
+* If it exists an author, we get the id and insert the book data, else we insert author and book data.
 5. 
 
 
