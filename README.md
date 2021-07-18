@@ -51,9 +51,8 @@ TODO or Done's:
 * Tkinter GUI, MVC
 
 EER of schema test and prod for BestSellers from Kaggle (Amazon books)
-* Prod and test is self-explanatory
-* Procedure:test.InsertBestSellersAndAuthors, uses the raw Kaggle data as-is
-* View:test.BestsellersAndAuthors, joins both tables
+
+[![Screenshot]([![Screenshot](x_SSMS_AZ.jpg))
 
 ## 1 HOW TO bestsellers with categories.csv
 
