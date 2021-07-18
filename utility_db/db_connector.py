@@ -12,11 +12,15 @@ class DbConnector:
         self.username = db_username
         self.password = db_password
         self.cnxn = pyodbc.connect("DRIVER={ODBC Driver 17 for SQL Server};SERVER="+self.server +
-                                   ";DATABASE="+self.database+";UID="+self.username+";PWD=" + self.password)
+                                   ";DATABASE="+self.database+";UID="+self.username+";PWD=" + self.password, ansi=True)  # for unicode
         self.cursor = self.cnxn.cursor()
+        # for unicode, https://stackoverflow.com/questions/29458260/python-pyodbc-unicode-issue/49017895
+        self.cnxn.setdecoding(pyodbc.SQL_CHAR, encoding='iso-8859-1')
+        self.cnxn.setdecoding(pyodbc.SQL_WCHAR, encoding='iso-8859-1')
+        self.cnxn.setencoding(encoding='utf8')
 
-    # NOTE 1 test query 
-    def get_version(self):
+    # NOTE 1 test query
+    def get_sql_version(self):
         try:
             with self.cnxn:  # ctxmanger close
                 self.cursor.execute("SELECT @@version;")
@@ -26,7 +30,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 2 create procedure if not exists
-    def create_or_check_procedure_insert_bestsellers(self):
+    def create_or_check_procedure_insert_bestsellers_test(self):
         logger.info("Try CREATE PROCEDURE")
         sql = """CREATE PROCEDURE test.InsertBestSellersAndAuthors(
                     @tmp_b_name NVARCHAR(300)
@@ -61,7 +65,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 3 insert the raw bestsellers with categories.csv
-    def procedure_insert_bestsellers(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
+    def procedure_insert_bestsellers_test(self, b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre):
         # we must validate all params before execute preocedure
         sql = "EXEC test.InsertBestSellersAndAuthors @tmp_b_name=? , @tmp_a_name=? , @tmp_b_rating=?, @tmp_b_reviews=?,@tmp_b_price=?,@tmp_b_year=?,@tmp_b_genre=?;"
         # we never add the params as str in sql, we add them outside so we bypass SQL Injection
@@ -79,7 +83,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 4 Select all
-    def select_all_bestsellers(self):
+    def select_all_bestsellers_test(self):
         try:
             with self.cnxn:  # ctxmanger close
                 sql = "SELECT * FROM test.BestSellers;"
@@ -90,9 +94,9 @@ class DbConnector:
         except Exception as e:
             logger.error(e)
 
-
     # NOTE 5 Join bestsellers and authors
-    def select_inner_join_bestsellers_authors(self):
+
+    def select_inner_join_bestsellers_authors_test(self):
         try:
             with self.cnxn:  # ctxmanger close
                 sql = """SELECT
@@ -117,7 +121,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 6 create view if not exists
-    def create_or_check_view_bestsellers_authors(self):
+    def create_or_check_view_bestsellers_authors_test(self):
         logger.info("Try CREATE VIEW")
         row = ""
         try:
@@ -156,7 +160,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 7 select view
-    def select_view_BestsellersAndAuthors(self):
+    def select_view_bestsellers_and_authors_test(self):
         try:
             with self.cnxn:  # ctxmanger close
                 sql = "SELECT * FROM test.BestsellersAndAuthors;"
@@ -168,7 +172,7 @@ class DbConnector:
             logger.error(e)
 
     # NOTE 8 select view order rating
-    def select_view_BestsellersAndAuthors_order_by_rating(self):
+    def select_view_bestsellers_and_authors_order_by_rating_test(self):
         try:
             with self.cnxn:  # ctxmanger close #ctxmanger close
                 sql = "SELECT * FROM test.BestsellersAndAuthors ORDER BY b_rating DESC;"
@@ -271,5 +275,29 @@ class DbConnector:
                     logger.info(row)
 
                     return row
+        except Exception as e:
+            logger.error(e)
+
+     # NOTE  select view
+    def select_view_bestsellers_and_authors_prod(self):
+        try:
+            with self.cnxn:  # ctxmanger close
+                sql = "SELECT * FROM prod.BestsellersAndAuthors;"
+                logger.info(sql)
+                self.cursor.execute(sql)
+                row = self.cursor.fetchall()
+                return row
+        except Exception as e:
+            logger.error(e)
+
+    # NOTE 8 select view order rating
+    def select_view_bestsellers_and_authors_order_by_rating_prod(self):
+        try:
+            with self.cnxn:  # ctxmanger close #ctxmanger close
+                sql = "SELECT * FROM prod.BestsellersAndAuthors ORDER BY b_rating DESC;"
+                logger.info(sql)
+                self.cursor.execute(sql)
+                row = self.cursor.fetchall()
+                return row
         except Exception as e:
             logger.error(e)

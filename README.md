@@ -56,14 +56,20 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 
 ## 1 HOW TO bestsellers with categories.csv
 
-1. Create tables with crt_1_tables_bestsellers.sql in SSMS
-2. Create user CRUD rights with crt_user_grant.sql in SSMS (step 1, 2 and 3 )
-3. We use the test.table's first to verify before implementing prod.table's
-*   A note about the data:bestsellers with categories.csv from kaggle or here, it is just raw data
+1. Create tables with crt_1_tables_bestsellers.sql in SSMS.
+2. Create user CRUD rights with crt_user_grant.sql in SSMS (step 1, 2 and 3).
+3. We use the test.table's first to verify before implementing the prod.table's.
+4. Create test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) procedure.
+*   A note about the data:bestsellers with categories.csv from kaggle or here, it is just raw data.
 *   The format must be (b for book, a for author); b_name, a_name, b_rating, b_reviews, b_price, b_year, b_genre.
-4. We then read the .csv and call the test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) to insert data:
-*   If it exists an author, we get the id and insert the book data, else we insert author and book data.
-5. 
+5. Before we can insert we must do step the last step in crt_user_grant.sql in SSMS, step 4 grant exec on the procedure
+6.  We then read the .csv and call the test.InsertBestSellersAndAuthors or (prod.InsertBestSellersAndAuthors) to insert data with the follwoing logic:
+*   If it exists an author, we get the id and insert the book data with that f-key, else we insert author and book data with the new f-key.
+7. We can now do data operations.
+8. We then create a view on test, a inner join of both using the f-key.
+9. We can now do more fun data operations.
+
+10. We can now do the same in prod, repeat step 2 to 9 (the prod.table was created in 1, but grant must be done on prod.table's)
 
 
 ## 2 HOW TO bestsellers with new topic tbd
