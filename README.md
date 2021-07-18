@@ -72,3 +72,5 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 11. All data has now been prepared for the next step:
 
 ## 2 How to bestsellers T-SQL
+
+1. A word about naming conventions in Python before we start on T-SQL, https://www.python.org/dev/peps/pep-0008/
