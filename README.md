@@ -50,7 +50,7 @@ TODO or Done's:
 * TBD
 * Tkinter GUI, MVC
 
-EER of schema test and prod for BestSellers from Kaggle (Amazon books)
+EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 
 [![Screenshot](x_EER_schema1_bestsellers.jpg)
 
