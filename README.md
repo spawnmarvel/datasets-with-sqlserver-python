@@ -87,4 +87,10 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 
 ### T-SQL Functions, view crt_6_functions_bestsellers.sql
 
+https://docs.microsoft.com/en-us/sql/t-sql/functions/functions?view=sql-server-ver15
+
+
 ### T-SQL Advanced, view crt_7_advanced_bestsellers.sql
+
+https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15
+
