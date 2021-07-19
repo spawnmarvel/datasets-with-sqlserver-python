@@ -83,6 +83,7 @@ https://realpython.com/python-pep8/#naming-styles
 
 
 | Type | Description | Example |
+| ---- | ----------- | ------- |
 | Function | Use a lowercase word or words. Separate words by underscores to improve readability | function, my_function |
 
 
