@@ -75,8 +75,11 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 
 ## 2 How to bestsellers T-SQL
 
-1. A word about naming conventions in Python before we start on T-SQL, https://www.python.org/dev/peps/pep-0008/
-* https://realpython.com/python-pep8/#naming-styles
+1. A word about naming conventions in Python before we start on T-SQL
+
+https://www.python.org/dev/peps/pep-0008/
+
+https://realpython.com/python-pep8/#naming-styles
 
 * Function, 	Use a lowercase word or words. Separate words by underscores to improve readability. 	function, my_function
 * Variable, 	Use a lowercase single letter, word, or words. Separate words with underscores to improve readability. 	x, var, my_variable
