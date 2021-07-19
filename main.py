@@ -1,5 +1,5 @@
-from utility_controller.app_controlller import AppController
-from utility_logs.app_logger import Logger
+from utilitycontroller.app_controlller import AppController
+from utilitylogs.app_logger import Logger
 import json
 
 logger = Logger().get()
@@ -49,7 +49,7 @@ def main():
 
     # NOTE 4.2 Data operations
     # app_ctrl.ctrl_select_view_bestsellers_and_authors_prod()
-    # app_ctrl.ctrl_select_view_bestsellers_and_authors_order_by_rating_test()
+    app_ctrl.ctrl_select_view_bestsellers_and_authors_order_by_rating_test()
 
     # NOTE 5
 

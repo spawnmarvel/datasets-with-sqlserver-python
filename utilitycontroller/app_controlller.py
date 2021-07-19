@@ -1,7 +1,7 @@
 
-from utility_db.db_connector import DbConnector
-from utility_reader.read_datasets import ReadDataSet
-from utility_logs.app_logger import Logger
+from utilitydb.db_connector import DbConnector
+from utilityreader.read_datasets import ReadDataSet
+from utilitylogs.app_logger import Logger
 import json
 
 logger = Logger().get()
