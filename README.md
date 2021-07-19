@@ -83,3 +83,8 @@ EER of schema v1.1 test and prod for BestSellers from Kaggle (Amazon books)
 * Constant, 	Use an uppercase single letter, word, or words. Separate words with underscores to improve readability. 	CONSTANT, MY_CONSTANT, MY_LONG_CONSTANT
 * Module, 	Use a short, lowercase word or words. Separate words with underscores to improve readability. 	module.py, my_module.py
 * Package, 	Use a short, lowercase word or words. Do not separate words with underscores. 	package, mypackage
+
+
+2. T-SQL Functions, view crt_6_functions_bestsellers.sql
+
+3. T-SQL Advanced, view crt_7_advanced_bestsellers.sql
