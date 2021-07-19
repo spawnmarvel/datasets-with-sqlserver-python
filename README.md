@@ -1,5 +1,5 @@
 # datasets-with-sqlserver-python
-Having fun with Kaggle data, SQL Server and Python (pyodbc).
+Having fun with Kaggle data, SQL Server and Python (pyodbc) using DDL and DML.
 
 ## Information
 ### Links
