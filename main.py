@@ -51,9 +51,8 @@ def main():
     # app_ctrl.ctrl_select_view_bestsellers_and_authors_prod()
     app_ctrl.ctrl_select_view_bestsellers_and_authors_order_by_rating_test()
 
-    # NOTE 5
+    # NOTE 5, do crt_6_functions and crt_7_advanced.
 
-    # TODO 1: Refactor 50 done, check https://www.python.org/dev/peps/pep-0008/ naming conventions "
     # TODO 2: When above is done, then you can dive into more advanced stuff"
     # TODO 3: Load other Kaggle data and repeat TODO 2"
 
