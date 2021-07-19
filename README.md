@@ -7,6 +7,8 @@ SQL:
 
 [Microsoft SQL documentation]https://docs.microsoft.com/en-us/sql/?view=sql-server-ver15
 
+[SQL Server technical documentation] https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15
+
 [SQL SERVER SSMS] https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
 
 Must check out this Azure Data Studio stuff
