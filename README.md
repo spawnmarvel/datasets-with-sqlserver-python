@@ -82,7 +82,7 @@ https://www.python.org/dev/peps/pep-0008/
 https://realpython.com/python-pep8/#naming-styles
 
 
-| Type | Description | Example
+| Type | Description | Example |
 | Function | Use a lowercase word or words. Separate words by underscores to improve readability | function, my_function |
 * Variable, 	Use a lowercase single letter, word, or words. Separate words with underscores to improve readability. 	x, var, my_variable
 * Class, 	Start each word with a capital letter. Do not separate words with underscores. This style is called camel case. 	Model, MyClass
