@@ -97,8 +97,12 @@ https://realpython.com/python-pep8/#naming-styles
 
 https://docs.microsoft.com/en-us/sql/t-sql/functions/functions?view=sql-server-ver15
 
+https://www.tsql.info/
+
 
 ### T-SQL Advanced, view crt_7_advanced_bestsellers.sql
 
 https://docs.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver15
+
+https://www.tsql.info/
 
