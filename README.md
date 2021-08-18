@@ -99,6 +99,9 @@ https://docs.microsoft.com/en-us/sql/t-sql/functions/functions?view=sql-server-v
 
 https://www.tsql.info/
 
+https://www.w3schools.com/sql/default.asp
+
+
 
 ### T-SQL Advanced, view crt_7_advanced_bestsellers.sql
 
