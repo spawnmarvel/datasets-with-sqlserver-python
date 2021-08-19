@@ -64,7 +64,7 @@ class AppController:
         logger.info("Try insert bestsellers")
         # read the data csv file
         bestsellers_data = self.read_dataset_worker.read_file(
-            "./kaggle-datasets/bestsellers with categories.csv")
+            "./data-kaggle-datasets/bestsellers with categories.csv")
         # keep a set of authors for later use, this will be a new table with foreign key anyway
         distinct_authors = set()
         for b in bestsellers_data:
@@ -86,7 +86,7 @@ class AppController:
         logger.info("Try insert bestsellers")
         # read the data csv file
         bestsellers_data = self.read_dataset_worker.read_file(
-            "./kaggle-datasets/bestsellers with categories.csv")
+            "./data-kaggle-datasets/bestsellers with categories.csv")
         # keep a set of authors for later use, this will be a new table with foreign key anyway
         distinct_authors = set()
         for b in bestsellers_data:
