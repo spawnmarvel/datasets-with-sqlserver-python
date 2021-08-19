@@ -113,4 +113,10 @@ https://www.tsql.info/
 ### SQL sample repository
 https://docs.microsoft.com/en-us/sql/samples/sql-samples-where-are?view=sql-server-ver15
 
-Wide World Importer database
+Wide World Importer database (WideWorldImportersDW-Standard.bak), since I am running express.
+
+To install/ restore the database, run
+``` sql
+crt_install_sample_db.sql
+
+``` sql
