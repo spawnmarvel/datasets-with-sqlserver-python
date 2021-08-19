@@ -119,4 +119,4 @@ To install/ restore the database, run
 ``` sql
 crt_install_sample_db.sql
 
-``` sql
+```
