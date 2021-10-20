@@ -24,3 +24,5 @@ Data Manipulation Language (DML) affect the information stored in the database. 
     SELECT
     UPDATE
     MERGE
+
+Note:
